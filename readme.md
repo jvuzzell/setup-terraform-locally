@@ -3,8 +3,9 @@
 - [Step 1 - Setting Up SSO Profile to Interactively Practice Terraform](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-1---setting-up-sso-profile-to-interactively-practice-terraform)
 - [Step 2 - Alternative Means for Granting Terraform Access to AWS within a  Bitbucket Pipeline](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-2---alternative-means-for-granting-terraform-access-to-aws-within-a--bitbucket-pipeline)
 - [Step 3 - Install AWS Cli](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-3---install-aws-cli)
-- [Step 4 - Install Terraform Locally](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-4---install-terraform-locally)
-- [Step 5 - Test Terraform with AWS](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-5---test-terraform-with-aws)
+- [Step 4 - Adding AWS Credentials for Terraform to Your Environment](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-4---adding-aws-credentials-for-terraform-to-your-environment)
+- [Step 5 - Install Terraform Locally](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-5---install-terraform-locally) 
+- [Step 6 - Test Terraform with AWS](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-6---test-terraform-with-aws)
 
 ## Step 1 - Setting Up SSO Profile to Interactively Practice Terraform
 
@@ -96,7 +97,7 @@ If you're using Terraform, consider using Terraform Cloud for running Terraform 
     $ unzip awscliv2.zip
     $ sudo ./aws/install
 
-## 4 - Adding AWS Credentials for Terraform to Your Environment
+## Step 4 - Adding AWS Credentials for Terraform to Your Environment
 
 - You need to have an AWS account with the necessary permissions to create and manage resources.
 
@@ -180,7 +181,7 @@ To effectively run Terraform, especially for provisioning and managing resources
     fi
 
 
-## Step 4 - Install Terraform Locally
+## Step 5 - Install Terraform Locally
 
 ### Bash Script (MacOS w/ Homebrew)
 
@@ -250,7 +251,7 @@ To effectively run Terraform, especially for provisioning and managing resources
 
 4. Run the script with `./install_terraform.sh`.
 
-## Step 5 - Test Terraform with AWS
+## Step 6 - Test Terraform with AWS
 
 ### Bash Script
 
