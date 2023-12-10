@@ -1,10 +1,10 @@
 # Setting Up and Testing Terraform Locally
 
-- [Setting Up SSO Profile to Interactively Practice Terraform](https://github.com/jvuzzell/setup-terraform-locally/edit/main/readme.md#step-1---setting-up-sso-profile-to-interactively-practice-terraform)
+- [Step 1 - Setting Up SSO Profile to Interactively Practice Terraform](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-1---setting-up-sso-profile-to-interactively-practice-terraform)
 - [Step 2 - Alternative Means for Granting Terraform Access to AWS within a  Bitbucket Pipeline](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-2---alternative-means-for-granting-terraform-access-to-aws-within-a--bitbucket-pipeline)
-- [Step 3 - Install AWS Cli](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-3---install-aws-cli)
-- [Step 4 - Adding AWS Credentials for Terraform to Your Environment](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-4---adding-aws-credentials-for-terraform-to-your-environment)
-- [Step 5 - Install Terraform Locally](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-5---install-terraform-locally)
+- [Step 3 - Install AWS Cli](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-3---adding-aws-credentials-for-terraform-to-your-environment)
+- [Step 4 - Adding AWS Credentials for Terraform to Your Environment](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-4---install-terraform-locally)
+- [Step 5 - Install Terraform Locally](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-5---test-terraform-with-aws)
 - [Step 6 - Test Terraform with AWS](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-6---test-terraform-with-aws)
 
 ## Step 1 - Setting Up SSO Profile to Interactively Practice Terraform
@@ -26,17 +26,17 @@ Note: The following method for interactive configuration is best suited for secu
 5. Select permissions set and confirm the assignment of permissions to the group
 ![Screenshot of webpage - AWS IAM Identity Center, AWS Organizations: Assign users and groups](assets/images/image-5.png)
 
-6. IAM Identity Center → Add User
+6. IAM Identity Center → Add User<br>
 ![Screenshot of webpage - AWS IAM Identity Center, Users](assets/images/image-6.png)
 
-7. Specify user details
+7. Specify user details<br>
 ![Screenshot of webpage - AWS IAM Identity Center, Users: Add user](assets/images/image-7.png)
 
-8. Add user to group; the group should have permissions corresponding to the resources Terraform will manage.
+8. Add user to group; the group should have permissions corresponding to the resources Terraform will manage.<br>
 ![Screenshot of webpage - AWS IAM Identity Center, Users: Add user](assets/images/image-8.png)
 
-9. Confirm user
-![Screenshot of webpage - AWS IAM Identity Center, Users: Add user](assets/images/image-9.png)
+9. Confirm user<br>
+![Screenshot of webpage - AWS IAM Identity Center, Users: Add user](assets/images/image-9.png)<br>
 ![Screenshot of webpage - AWS IAM Identity Center, One-time password modal](assets/images/image-10.png)
 
 10. Login and verify your account; this may require using MFA. At this point, you’re ready for the next section!
@@ -85,7 +85,7 @@ If you're using Terraform, consider using Terraform Cloud for running Terraform 
 
 - Audit and Monitor: Regularly audit your AWS and Bitbucket configurations and monitor for any unauthorized access.
 
-## Step 1 - Install AWS CLI
+## Step 3 - Install AWS CLI
 
 ### Bash (MacOS w/ Homebrew)
 
@@ -97,7 +97,7 @@ If you're using Terraform, consider using Terraform Cloud for running Terraform 
     $ unzip awscliv2.zip
     $ sudo ./aws/install
 
-## Step 3 - Adding AWS Credentials for Terraform to Your Environment
+## 4 - Adding AWS Credentials for Terraform to Your Environment
 
 - You need to have an AWS account with the necessary permissions to create and manage resources.
 
@@ -251,7 +251,7 @@ To effectively run Terraform, especially for provisioning and managing resources
 
 4. Run the script with `./install_terraform.sh`.
 
-# Step 5 - Test Terraform with AWS
+## Step 6 - Test Terraform with AWS
 
 ### Bash Script
 
