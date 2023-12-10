@@ -1,44 +1,53 @@
-# Step 0a - Setting Up SSO Profile to Interactively Practice Terraform
+# Setting Up and Testing Terraform Locally
+
+- [Setting Up SSO Profile to Interactively Practice Terraform](https://github.com/jvuzzell/setup-terraform-locally/edit/main/readme.md#step-1---setting-up-sso-profile-to-interactively-practice-terraform)
+- [Step 2 - Alternative Means for Granting Terraform Access to AWS within a  Bitbucket Pipeline](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-2---alternative-means-for-granting-terraform-access-to-aws-within-a--bitbucket-pipeline)
+- [Step 3 - Install AWS Cli](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-3---install-aws-cli)
+- [Step 4 - Adding AWS Credentials for Terraform to Your Environment](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-4---adding-aws-credentials-for-terraform-to-your-environment)
+- [Step 5 - Install Terraform Locally](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-5---install-terraform-locally)
+- [Step 6 - Test Terraform with AWS](https://github.com/jvuzzell/setup-terraform-locally?tab=readme-ov-file#step-6---test-terraform-with-aws)
+
+## Step 1 - Setting Up SSO Profile to Interactively Practice Terraform
 
 Note: The following method for interactive configuration is best suited for securely practicing and testing Terraform. This will not work directly in the Bitbucket Pipeline because of the login process pictured below.
 
 1. IAM Identity Center → Add Group
-![Alt text](image-1.png)
+![Screenshot of webpage - AWS IAM Identity Center, Create Group](assets/images/image-1.png)
 
 2. Assign Permissions to Group → Select Account
-![Alt text](image-2.png)
+![Screenshot of webpage - AWS IAM Identity Center, AWS Organizations: AWS accounts](assets/images/image-2.png)
 
 3. Assign group to AWS account
-![Alt text](image-3.png)
+![Screenshot of webpage - AWS IAM Identity Center, AWS Organizations: Assign users and groups](assets/images/image-3.png)
 
 4. Create permissions set
-![Alt text](image-4.png)
+![Screenshot of webpage - AWS IAM Identity Center, Permission Sets: Create permission set](assets/images/image-4.png)
 
 5. Select permissions set and confirm the assignment of permissions to the group
-![Alt text](image-5.png)
+![Screenshot of webpage - AWS IAM Identity Center, AWS Organizations: Assign users and groups](assets/images/image-5.png)
 
 6. IAM Identity Center → Add User
-![Alt text](image-6.png)
+![Screenshot of webpage - AWS IAM Identity Center, Users](assets/images/image-6.png)
 
 7. Specify user details
-![Alt text](image-7.png)
+![Screenshot of webpage - AWS IAM Identity Center, Users: Add user](assets/images/image-7.png)
 
 8. Add user to group; the group should have permissions corresponding to the resources Terraform will manage.
-![Alt text](image-8.png)
+![Screenshot of webpage - AWS IAM Identity Center, Users: Add user](assets/images/image-8.png)
 
 9. Confirm user
-![Alt text](image-9.png)
-![Alt text](image-10.png)
+![Screenshot of webpage - AWS IAM Identity Center, Users: Add user](assets/images/image-9.png)
+![Screenshot of webpage - AWS IAM Identity Center, One-time password modal](assets/images/image-10.png)
 
 10. Login and verify your account; this may require using MFA. At this point, you’re ready for the next section!
 
-# Step 0b - Alternative Means for Granting Terraform Access to AWS within a  Bitbucket Pipeline
+## Step 2 - Alternative Means for Granting Terraform Access to AWS within a  Bitbucket Pipeline
 
 Using an AWS CLI profile, especially one configured for AWS Single Sign-On (SSO), in a Bitbucket Pipeline can indeed be challenging. Bitbucket Pipelines, like other CI/CD systems, are better suited to using static credentials or roles for AWS access due to their non-interactive nature. AWS SSO is designed primarily for interactive use cases where a user can log in through a browser.
 
 However, there are ways to work around this and securely manage AWS credentials in Bitbucket Pipelines:
 
-## 1. Use Static Credentials (Not Recommended for Production)
+### 1. Use Static Credentials (Not Recommended for Production)
 
 You can use static AWS Access Key ID and Secret Access Key in your pipeline. This method is straightforward but not recommended for production environments due to security reasons.
 
@@ -46,7 +55,7 @@ You can use static AWS Access Key ID and Secret Access Key in your pipeline. Thi
 
 - Use these variables in your pipeline to configure AWS CLI or pass them to Terraform.
 
-## 2. Use IAM Roles with AssumeRole
+### 2. Use IAM Roles with AssumeRole
 
 A more secure method is to use an IAM role with AssumeRole. This approach involves creating an IAM role that your pipeline can assume to get temporary credentials.
 
@@ -56,7 +65,7 @@ A more secure method is to use an IAM role with AssumeRole. This approach involv
 
 - Modify your pipeline script to assume the IAM role and use the resulting temporary credentials.
 
-## 3. Use OpenID Connect (OIDC) with Bitbucket Pipelines
+### 3. Use OpenID Connect (OIDC) with Bitbucket Pipelines
 
 If supported by your AWS setup, you can use OIDC federation between AWS and Bitbucket. This allows Bitbucket Pipelines to assume an IAM role without the need for static credentials.
 
@@ -66,7 +75,7 @@ If supported by your AWS setup, you can use OIDC federation between AWS and Bitb
 
 - Configure your Bitbucket Pipeline to assume this role.
 
-## 4. Terraform Cloud as an Alternative
+### 4. Terraform Cloud as an Alternative
 
 If you're using Terraform, consider using Terraform Cloud for running Terraform operations. Terraform Cloud can securely store your AWS credentials and manage state files, making it a good fit for CI/CD pipelines.
 
@@ -76,19 +85,19 @@ If you're using Terraform, consider using Terraform Cloud for running Terraform 
 
 - Audit and Monitor: Regularly audit your AWS and Bitbucket configurations and monitor for any unauthorized access.
 
-# Step 1 - Install AWS CLI
+## Step 1 - Install AWS CLI
 
-## Bash (MacOS w/ Homebrew)
+### Bash (MacOS w/ Homebrew)
 
     $ brew install awscli
     $ aws --version
 
-## Bash (WSL)
+### Bash (WSL)
     $ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
     $ unzip awscliv2.zip
     $ sudo ./aws/install
 
-# Step 2 - Adding AWS Credentials for Terraform to Your Environment
+## Step 3 - Adding AWS Credentials for Terraform to Your Environment
 
 - You need to have an AWS account with the necessary permissions to create and manage resources.
 
@@ -107,17 +116,17 @@ If you're using Terraform, consider using Terraform Cloud for running Terraform 
 
     Note: This method is better suited for non-interactive configuration management but it has known security risks
 
-## AWS Account Permissions for Terraform 
+### AWS Account Permissions for Terraform 
 
 To effectively run Terraform, especially for provisioning and managing resources in a cloud environment like AWS, your account needs to have permissions that correspond to the resources Terraform will manage.
 
-## General Permissions: 
+### General Permissions: 
 
 - Creating, updating, and deleting resources.
 - Managing networking settings if your Terraform scripts configure network resources.
 - Accessing any required APIs or services that your Terraform configuration interacts with. 
 
-## Relevant AWS Policies
+### Relevant AWS Policies
 
 1. AdministratorAccess: The simplest approach is to have an AWS account with AdministratorAccess. This is a broad permission that allows Terraform to manage all resources in your AWS account. However, this level of access might not be suitable for production environments due to security concerns.
 
@@ -127,7 +136,7 @@ To effectively run Terraform, especially for provisioning and managing resources
 
 4. Terraform State File Storage: If you are using S3 for storing Terraform state files, ensure permissions for actions like `s3:PutObject, s3:GetObject, and s3:DeleteObject` on the specific S3 bucket.
 
-# Bash Script - AWS CLI SSO Wizard
+### Bash Script - AWS CLI SSO Wizard
 
     !/bin/bash
 
@@ -172,9 +181,9 @@ To effectively run Terraform, especially for provisioning and managing resources
     fi
 
 
-# Step 3 - Install Terraform Locally
+## Step 4 - Install Terraform Locally
 
-## Bash Script (MacOS w/ Homebrew)
+### Bash Script (MacOS w/ Homebrew)
 
     !/bin/bash
 
@@ -199,7 +208,7 @@ To effectively run Terraform, especially for provisioning and managing resources
         echo "Terraform installation failed."
     fi
 
-## Bash Script (WSL) 
+### Bash Script (WSL) 
 
     #!/bin/bash
 
@@ -232,7 +241,7 @@ To effectively run Terraform, especially for provisioning and managing resources
     fi
 
 
-## Script Use (MacOS & WSL)
+### Script Use (MacOS & WSL)
 
 1. Copy the script into a file on your MacBook Pro. You can name the file something like install_terraform.sh.
 
@@ -242,9 +251,9 @@ To effectively run Terraform, especially for provisioning and managing resources
 
 4. Run the script with `./install_terraform.sh`.
 
-# Step 4 - Test Terraform with AWS
+# Step 5 - Test Terraform with AWS
 
-## Bash Script
+### Bash Script
 
     #!/bin/bash
 
@@ -312,9 +321,10 @@ To effectively run Terraform, especially for provisioning and managing resources
     cd ..
     rm -rf terraform-test
 
-## Expected Output
-![Alt text](image.png)
-## Script Use
+### Expected Output
+![Mac OS terminal screenshot](assets/images/image.png)
+
+### Script Use
 
 1. Copy the script into a file, for example `test_terraform.sh`.
 
