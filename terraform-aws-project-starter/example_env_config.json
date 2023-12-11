@@ -1,0 +1,5 @@
+{
+    "PROJECT_DIR": "/path/to/terraform-deployment",
+    "ENVIRONMENTS_DIR": "/path/to/terraform-deployment/environments",
+    "ENVIRONMENTS": ["dev", "staging", "prod"]
+}
