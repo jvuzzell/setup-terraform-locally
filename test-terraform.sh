@@ -63,6 +63,3 @@ echo "Destroying created resources..."
 terraform destroy -auto-approve
 cd ..
 rm -rf terraform-test
-
-# qqM48(]' 
-# -fTliB5KRFB-r0YOdD17_oFN@Hz8Q
