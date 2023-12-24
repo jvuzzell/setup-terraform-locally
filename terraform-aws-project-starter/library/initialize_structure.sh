@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Source the set_environments.sh script to ensure ENVIRONMENTS_DIR and PROJECT_DIR are set
-source "$PROJECT_DIR/scripts/library/set_environments.sh"
+source "$LIBRARY_DIR/set_environment.sh"
 
 # Create the base directories for modules and global configurations
 mkdir -p "$PROJECT_DIR/modules/vpc" \
@@ -14,8 +14,8 @@ mkdir -p "$PROJECT_DIR/modules/vpc" \
 # Function to create and test an environment
 create_and_test_environment() {
     local env_name=$1
-    "$PROJECT_DIR/scripts/library/create_environments.sh" "$env_name"
-    if [ "$("$PROJECT_DIR/scripts/library/test_create_environments.sh" "$env_name")" = "true" ]; then
+    "$LIBRARY_DIR/create_environment.sh" "$env_name"
+    if [ "$("$LIBRARY_DIR/test_create_environment.sh" "$env_name")" = "true" ]; then
         echo "Environment '$env_name' created and verified successfully."
     else
         echo "Failed to verify environment: $env_name"

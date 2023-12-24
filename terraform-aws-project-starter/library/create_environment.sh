@@ -24,7 +24,7 @@ ENV_DIR="$ENVIRONMENTS_DIR/$1"
 mkdir -p "$ENV_DIR"
 
 # Create basic Terraform files
-create_file "$ENV_DIR/main.tf" 'provider "aws" {} # Specify your provider configuration here'
+create_file "$ENV_DIR/main.tf" '# Provider "aws" {} # Specify your provider configuration here'
 create_file "$ENV_DIR/variables.tf" '# Declare your variables here'
 create_file "$ENV_DIR/outputs.tf" '# Define your outputs here'
 create_file "$ENV_DIR/terraform.tfvars" '# Define default values for your variables here'

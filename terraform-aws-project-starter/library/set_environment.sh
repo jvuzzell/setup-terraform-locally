@@ -1,5 +1,8 @@
 #!/bin/bash
 
+source "$LIBRARY_DIR/utilities/extract_json_value.sh"
+source "$LIBRARY_DIR/utilities/extract_json_array.sh"
+
 # Use the path from the environment variable, or default to a known location
 CONFIG_FILE="${ENV_CONFIG_PATH:-/default/path/to/env_config.json}"
 
