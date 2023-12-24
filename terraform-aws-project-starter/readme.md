@@ -2,8 +2,29 @@
 
 ## Step 1 - Edit Environment Configuration
 
-1. Rename example config: `mv example_env_config.json env_config.json`
-2. 
+1. Rename example config: 
+
+        $ mv example_env_config.json env_config.json
+
+2. Adjust configurations, replacing the `/path/to/` for the actualy path to your project
+
+        {
+            "PROJECT_DIR": "/path/to/terraform-deployment",
+            "ENVIRONMENTS_DIR": "/path/to/terraform-deployment/environments",
+            "ENVIRONMENTS": ["dev", "staging", "prod"]
+        }
+
+## Step 2 - Usage
+
+1. Load commands for the terrastarter program
+        ```bash
+        source .bashrc
+        ```
+
+2. Initialize your terraform project; this will create the folder structure for the project so that you can begin work
+        ```bash
+        terrastarter.init
+        ```
 
 ## Terraform Project Structure 
 
